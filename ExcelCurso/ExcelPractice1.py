@@ -21,7 +21,8 @@ for i in range(1, sheet.max_row + 1):
 
 
 for x in range(1, sheet.max_row+1):
-#Es importante que recuerdes que esto de arriba no define si la fila o columna se va a checar, solamente es para definir el rango del for
+#Es importante que recuerdes que esto de arriba no define si la fila o
+#columna se va a checar, solamente es para definir el rango del for
     if sheet.cell(row=x, column=8).value == "Pablo":
         print("Found pablo")
         for y in range(8, sheet.max_column + 1):
