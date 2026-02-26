@@ -8,25 +8,30 @@ def update_excel_data(file_path, searchTerm, colName, newValue):
 
     book = openpyxl.load_workbook(file_path)
     sheet = book.active
-    dict={}
+    ValueToModify={}
 
     for i in range(1, sheet.max_column + 1):
         if sheet.cell(row=1, column=i).value == colName:
-            dict["col"]=i
+            ValueToModify["col"]=i
+        #Este for es para encontrar la columna donde se encuentra el titulo de precio
 
     for i in range(1, sheet.max_row + 1):
         for j in range(1, sheet.max_column + 1):
             if sheet.cell(row=i, column=j).value == searchTerm:
-                dict["row"]=i
+                ValueToModify["row"] = i
+        #Este for revisa todas las celdas hasta dar con el nombre de la fruta y guarda
+        #el numero de la fila
 
-    sheet.cell(row=dict["row"], column=dict["col"]).value=newValue
+    print(ValueToModify["row"])
+
+    sheet.cell(row=ValueToModify["row"], column=ValueToModify["col"]).value=newValue
     book.save(file_path)
 
 
-# file_path = r"C:\Users\psanchez\Downloads\download.xlsx"#PC Amber
-file_path = r"E:\Documentos\Python practica\Webs de Prueba\download.xlsx"  # PC Casa
+file_path = r"C:\Users\psanchez\Downloads\download.xlsx"#PC Amber
+#file_path = r"E:\Documentos\Python practica\Webs de Prueba\download.xlsx"  # PC Casa
 fruit_name = "Kivi"
-newValue="679"
+newValue="800"
 driver = webdriver.Chrome()
 driver.implicitly_wait(6)
 driver.get("https://rahulshettyacademy.com/upload-download-test/index.html")

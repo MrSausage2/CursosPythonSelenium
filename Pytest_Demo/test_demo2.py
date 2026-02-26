@@ -12,4 +12,11 @@ def test_SecondProgram():
 
 @pytest.fixture()
 def setup():
+    x=10
     print("Method that executes first")
+    yield
+    print("Method that executes last")
+
+def test_fixture_Demo(setup):
+    result=setup.x+1
+    print("I will execute steps in fixtureDemo method")
