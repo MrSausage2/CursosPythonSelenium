@@ -8,12 +8,14 @@
 import pytest
 
 
-@pytest.mark.smoke
-@pytest.mark.skip
-def test_firstProgram():
-    print("Hola mundo")
+#@pytest.mark.smoke
+#@pytest.mark.skip
+#def test_firstProgram():
+ #   print("Hola mundo")
 
-def test_secondProgram():
-    print("Arriba las chivas")
+#def test_secondProgram():
+#    print("Arriba las chivas")
 
 
+def test_crossBrowser(crossBrowser):
+    print(crossBrowser)
