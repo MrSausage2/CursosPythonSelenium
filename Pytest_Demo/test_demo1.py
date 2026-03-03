@@ -5,6 +5,8 @@
 #cd + el path en la consola para ejecutar los comandos py.test
 #py.test -k "keyword"" -v -s despues de la k se pone el grupo o keyword de test cases deseados
 #py.test -m "mark" pones una tag al metodo con un nombre y solamente corre los metodos con esa marca
+#para generar reportes de html es necesario instalar el plugin:
+#pip install pytest-html
 import pytest
 
 
