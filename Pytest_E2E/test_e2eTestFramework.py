@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions
 
 def test_e2e(browserInstance):
     driver=browserInstance
+    wait_e2e = WebDriverWait(driver, 10)
     driver.get("https://rahulshettyacademy.com/angularpractice/")
     driver.implicitly_wait(5)
     driver.find_element(By.CSS_SELECTOR, "a[href*=shop]").click()
@@ -28,7 +29,7 @@ def test_e2e(browserInstance):
 
     WebDriverWait(driver, 10)
     countryCheck = "Armenia"
-    wait.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, countryCheck)))
+    wait_e2e.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, countryCheck)))
 
     driver.find_element(By.LINK_TEXT, countryCheck).click()
     driver.find_element(By.CSS_SELECTOR, ".checkbox.checkbox-primary").click()
