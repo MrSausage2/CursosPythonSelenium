@@ -21,4 +21,4 @@ def browserInstance(request):
         driver.implicitly_wait(5)
         driver.maximize_window()
     yield driver
-    driver.close() #preguntar a deepseek sobre error
+    driver.close() #el error se debía a que había un driver.close en el testcase

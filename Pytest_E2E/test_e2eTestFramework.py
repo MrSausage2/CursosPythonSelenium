@@ -1,8 +1,11 @@
-from selenium import webdriver
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
+from pageObjects.ShopPage import ShopPage
 from pageObjects.login import LoginPage
 
 
@@ -13,18 +16,10 @@ def test_e2e(browserInstance):
     loginPage=LoginPage(driver)
     loginPage.login()
 
-    driver.find_element(By.CSS_SELECTOR, "a[href*=shop]").click()
-
-    windowsOpened = driver.window_handles
+    shop_page=ShopPage(driver)
     phoneWanted = "Blackberry"
-    phoneCards = driver.find_elements(By.XPATH, "//div[@class='card h-100']")
+    shop_page.add_product_to_cart(phoneWanted)
 
-    driver.switch_to.window(windowsOpened[0])
-
-    for card in phoneCards:
-        if phoneWanted == card.find_element(By.XPATH, "div/h4/a").text:
-            # print(card.find_element(By.XPATH, "div/h4/a").text)
-            card.find_element(By.XPATH, "div/button").click()
 
     driver.find_element(By.CSS_SELECTOR, ".nav-link.btn.btn-primary").click()
 
@@ -42,5 +37,3 @@ def test_e2e(browserInstance):
 
     successText = driver.find_element(By.CLASS_NAME, "alert-success").text
     assert "Success! Thank you!" in successText
-
-    driver.close()
