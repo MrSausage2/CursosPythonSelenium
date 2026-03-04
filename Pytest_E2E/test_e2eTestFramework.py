@@ -3,11 +3,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
+from pageObjects.login import LoginPage
+
+
 def test_e2e(browserInstance):
     driver=browserInstance
     wait_e2e = WebDriverWait(driver, 10)
-    driver.get("https://rahulshettyacademy.com/angularpractice/")
-    driver.implicitly_wait(5)
+    driver.get("https://rahulshettyacademy.com/loginpagePractise/")
+    loginPage=LoginPage(driver)
+    loginPage.login()
+
     driver.find_element(By.CSS_SELECTOR, "a[href*=shop]").click()
 
     windowsOpened = driver.window_handles
