@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from pageObjects.ShopPage import ShopPage
+
 
 class LoginPage:
     def __init__(self, driver):
@@ -11,4 +13,5 @@ class LoginPage:
         self.driver.find_element(*self.username_input).send_keys("rahulshettyacademy")
         self.driver.find_element(*self.password).send_keys("Learning@830$3mK2")
         self.driver.find_element(*self.signIN).click()
-
+        shop_page=ShopPage(self.driver)
+        return shop_page
