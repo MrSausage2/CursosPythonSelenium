@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from CursosPythonSelenium.pageObjects.Checkout_Confirmation import Checkout_Confirmation
+from pageObjects.Checkout_Confirmation import Checkout_Confirmation
 
 
 class ShopPage:
@@ -12,15 +12,15 @@ class ShopPage:
 
     def add_product_to_cart(self, phoneWanted):
         self.driver.find_element(*self.shop_link).click()
-        productName=phoneWanted
+        #productName=phoneWanted
         windowsOpened = self.driver.window_handles
 
-        phoneCards = self.driver.find_elements(self.phone_cards)
+        phoneCards = self.driver.find_elements(*self.phone_cards)
 
         self.driver.switch_to.window(windowsOpened[0])
 
         for card in phoneCards:
-            if productName == card.find_element(By.XPATH, "div/h4/a").text:
+            if phoneWanted == card.find_element(By.XPATH, "div/h4/a").text:
                 # print(card.find_element(By.XPATH, "div/h4/a").text)
                 card.find_element(By.XPATH, "div/button").click()
 

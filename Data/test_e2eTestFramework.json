@@ -1,0 +1,18 @@
+{
+  "data" : [
+    {
+      "userEmail" : "rahulshettyacademy",
+      "userPassword" : "Learning@830$3mK2",
+      "productName" : "Blackberry",
+      "countryDelivery" : "Armenia"
+    },
+
+    {
+      "userEmail" : "rahulshettyacademy",
+      "userPassword" : "Learning@830$3mK2",
+      "productName" : "Samsung Note 8",
+      "countryDelivery" : "Armenia"
+    }
+
+  ]
+}

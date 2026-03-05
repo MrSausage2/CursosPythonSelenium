@@ -1,29 +1,32 @@
+import json
 import sys
 import os
 
+import pytest
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from pageObjects.login import LoginPage
-from pageObjects.ShopPage import ShopPage
 
+test_data_path = "../Data/test_e2eTestFramework.json"
+with open(test_data_path) as f:
+    testData = json.load(f)
+    testListData = testData["data"]
 
-def test_e2e(browserInstance):
+@pytest.mark.parametrize("testListItem", testListData)
+def test_e2e(browserInstance, testListItem):
     driver=browserInstance
-    wait_e2e = WebDriverWait(driver, 10)
     driver.get("https://rahulshettyacademy.com/loginpagePractise/")
     loginPage = LoginPage(driver)
-    shop_page = loginPage.login()
+    shop_page = loginPage.login(testListItem["userEmail"], testListItem["userPassword"])
+    itemWanted = testListItem["productName"]
+    shop_page.add_product_to_cart(itemWanted)
 
-
-    #itemWanted = "Blackberry"
-    shop_page.add_product_to_cart("Blackberry")
     checkout_confirmation = shop_page.goToCart()
     checkout_confirmation.checkout()
-    checkout_confirmation.country_delivery()
+    checkout_confirmation.country_delivery(testListItem["countryDelivery"])
     checkout_confirmation.validate_order()
 
+#py.test test_e2eTestFramework.py --browser_name chrome -s -v
 
 
 
