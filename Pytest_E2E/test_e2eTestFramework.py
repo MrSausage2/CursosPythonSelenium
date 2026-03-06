@@ -12,6 +12,7 @@ with open(test_data_path) as f:
     testData = json.load(f)
     testListData = testData["data"]
 
+@pytest.mark.smoke
 @pytest.mark.parametrize("testListItem", testListData)
 def test_e2e(browserInstance, testListItem):
     driver=browserInstance

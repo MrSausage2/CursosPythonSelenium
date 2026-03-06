@@ -16,8 +16,8 @@ def browserInstance(request):
         driver = webdriver.Chrome()
         driver.implicitly_wait(5)
         driver.maximize_window()
-    elif browser_name=="firefox":
-        driver = webdriver.Firefox()
+    elif browser_name=="edge":
+        driver = webdriver.Edge()
         driver.implicitly_wait(5)
         driver.maximize_window()
     yield driver
